@@ -1,0 +1,159 @@
+.header {
+  background-color: #00a13d;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.65);
+  width: 100%;
+  z-index: 5;
+}
+
+.header__content {
+  padding: 0 15px;
+  height: 85px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.header__main-logo {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  background: url("../../../../assets/img/ekassa-logo.png");
+  position: relative;
+  top: 3%;
+}
+
+.header__main-logo_logout {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  background: url("../../../../assets/img/ekassa-logo.png");
+  position: relative;
+  top: 3%;
+}
+
+.header__login-link {
+  display: inline-block;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  background: linear-gradient(180deg, #ff9600 0%, #ff7300 100%);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
+  text-align: center;
+  line-height: 43px;
+  color: #ffffff;
+  font-weight: 500;
+  width: 162px;
+  height: 43px;
+}
+
+.header__login-link:hover {
+  transform: scale(1.05);
+  border-radius: 7px;
+}
+
+.header__nav {
+  color: #ffffff;
+  font-weight: 500;
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.header__nav-link {
+  position: relative;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.header__nav-link:hover:after {
+  position: absolute;
+  content: '';
+  bottom: -29px;
+  left: 50%;
+  transform: translateX(-50%);
+  /*box-shadow: 0px 2px 1px 1px rgba(0, 0, 0, 0.5);*/
+  width: 50px;
+  height: 4px;
+  border: 0;
+  background-color: #ff7400;
+}
+
+.header__close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 26px;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.header__nav-item.special span {
+  position: relative;
+  color: #333;
+  font-size: 22px;
+  padding: 5px 40px;
+  background: #fcc500;
+  border-radius: 10px;
+  border: 3px solid #fff;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, .5);
+  transition: .3s;
+}
+
+.header__nav-item.special.kolejny-krok span {
+  font-size: 18px;
+}
+
+.header__nav-item.special span:hover {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .5);
+}
+
+.header__profile-nav {
+  font-size: larger;
+  color: white;
+}
+
+.header__profile-nav>a {
+  margin: auto 5px;
+}
+
+.header__profile-link { background-image: url("../../../../assets/img/profile/profile_white.png"); width: 30px; height: 30px; display: inline-block;
+  background-size: cover; }
+.header__profile-link.header__profile-link__active { background-image: url("../../../../assets/img/profile/profile_orange.png"); }
+.header__personal_data-link { background-image: url("../../../../assets/img/profile/settings_white.png"); width: 30px; height: 30px; display: inline-block;
+  background-size: cover;}
+.header__personal_data-link.header__personal_data-link__active { background-image: url("../../../../assets/img/profile/settings_orange.png"); }
+.header__reset_password-link { background-image: url("../../../../assets/img/profile/paswword_white.png"); width: 30px; height: 30px; display: inline-block;
+  background-size: cover; }
+.header__reset_password-link:hover { background-image: url("../../../../assets/img/profile/password_orange.png"); }
+.header__logout-link { background-image: url("../../../../assets/img/profile/logout_white.png"); width: 30px; height: 30px; display: inline-block;
+  background-size: cover; }
+.header__logout-link:hover { background-image: url("../../../../assets/img/profile/logout_orange.png"); }
+
+.navbar-custom .navbar-nav > li > a {
+  color: #43A047;
+}
+
+.navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+  color: #43A047;
+  background-color: transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover, .nav > li > a:focus {
+  text-decoration: none;
+  color: #43A047;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.header__nav-link:hover {
+  /*color: #757575;*/
+  transform: scale(1.1);
+}
