@@ -1,0 +1,73 @@
+<header class="header" id="header">
+  <div class="container header__content">
+    <a class="header__main-logo" ui-sref="start.firstTask" (click)="goToFirstStep()" *ngIf="isLoggedIn"></a>
+    <a class="header__main-logo_logout" ui-sref="start.firstTask" (click)="goToFirstStep()" *ngIf="!isLoggedIn"></a>
+
+    <nav class="header__nav">
+      <a class="header__nav-link" ui-sref="start.firstTask"
+         ng-hide="nextProcessTaskLoan || nextProcessTaskConsolidation" (click)="goToFirstStep();">
+        <span>WEŹ POŻYCZKĘ</span>
+      </a>
+      <a class="header__nav-link" *ngIf="!inProcess"
+         ng-class="activeState.current.name == 'faq' ? 'header__nav-item--active' : ''"
+         (click)="goToFaq();"
+         ui-sref="faq">
+        <span>JAK TO DZIAŁA</span>
+      </a>
+      <a class="header__nav-link" *ngIf="inProcess"
+         ng-class="activeState.current.name == 'faq' ? 'header__nav-item--active' : ''"
+         (click)="goToFaq();"
+         target="_blank"
+         ui-sref="faq">
+        <span>JAK TO DZIAŁA</span>
+      </a>
+      <a class="header__nav-link" *ngIf="goToOpinie()">
+        <span>OPINIE</span>
+      </a>
+      <a class="header__nav-link" href="https://blog.ekassa.com" target="_blank">
+        <span>BLOG</span>
+      </a>
+      <a class="header__nav-link" (click)="goToFooter()">
+        <span>KONTAKT</span>
+      </a>
+    </nav>
+
+    <div class="header__login-block">
+      <a class="header__login-link" (click)="showLoginModal($event)"
+         ngClass="modalIsShown ? 'header__nav-item--active' : ''"
+         *ngIf="!isLoggedIn">
+        <span style="text-shadow:0 2px rgb(0,0,0)">LOGOWANIE</span>
+      </a>
+      <!--<a class="header__login-link" ng-show="nextProcessTaskLoan && isLoggedIn"-->
+      <!--ng-click="goToNextTask(false);">-->
+      <!--<span>KOLEJNY KROK</span>-->
+      <!--</a>-->
+      <!--<a class="header__login-link" ng-show="nextProcessTaskConsolidation && isLoggedIn"-->
+      <!--ng-click="goToNextTask(true);">-->
+      <!--<span>KOLEJNY KROK</span>-->
+      <!--</a>-->
+    </div>
+
+    <div class="header__profile-block" *ngIf="isLoggedIn">
+      <nav class="header__profile-nav">
+        <a class="header__profile-link" ui-sref="profile" *ngIf="!profileIsActive"></a>
+        <a class="header__profile-link header__profile-link__active" ui-sref="profile" *ngIf="profileIsActive"></a>
+        <a class="header__personal_data-link" (click)="goToPersonalData()" *ngIf="!personalInfoIsActive"></a>
+        <a class="header__personal_data-link header__personal_data-link__active" (click)="goToPersonalData()"
+           *ngIf="!personalInfoIsActive"></a>
+        <a class="header__reset_password-link" (click)="changePassword()"></a>
+        <a class="header__logout-link" (click)="logout()"></a>
+      </nav>
+    </div>
+
+    <div class="sandwich" (click)="toggleSidebar()" fxHide.gt-sm ngClass="setActiveClass()">
+      <div class="sandwich-line"></div>
+      <div class="sandwich-line"></div>
+      <div class="sandwich-line"></div>
+    </div>
+  </div>
+</header>
+
+<app-sidenav></app-sidenav>
+
+
