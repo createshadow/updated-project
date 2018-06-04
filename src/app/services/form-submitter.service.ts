@@ -2,29 +2,29 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {CrudService} from "./crud.service";
 import {GtmService} from "./gtm.service";
+import {SmoothScroll} from "../shared/polyfills/SmoothScroll";
+import {CamundaRoutingService} from "./camunda-routing.service";
 
 @Injectable()
 export class FormSubmitterService {
   constructor(
     private _http: HttpClient,
     private _crud: CrudService,
-    private _gtm: GtmService
+    private _gtm: GtmService,
+    private _camundaRouting: CamundaRoutingService
   ) {}
 
   public setNextState(currentState) {
     return this._crud.getNextTaskIdByProcessId(currentState.params.processId)
-      .map(function (nextState) {
+      .subscribe(nextState => {
         if (nextState.status !== 500) {
-          var nextStateData = nextState.data;
-          // if (nextStateData) {
-          //   $state.go(nextStateData['formKey'], {
-          //     processId: currentState.params.processId,
-          //     taskId: nextStateData.taskId
-          //   });
-          // } else {
-          //   console.log("setNextState");
-          //   $state.go('start.firstTask');
-          // }
+          let nextStateData = nextState.data;
+          if (nextStateData) {
+            this._camundaRouting.changeRoute(nextState);
+          } else {
+            console.log("setNextState");
+            this._camundaRouting.changeRoute();
+          }
         } else {
           console.warn('form submitter service failed to get next state');
         }
@@ -39,6 +39,7 @@ export class FormSubmitterService {
   public submitCamundaForm($scope, $state, form, variables) {
     $scope.submitted = false;
     // smoothScroll(document.getElementById("main"));
+    SmoothScroll.scrollTo(".main");
     if (form.$valid) {
       $scope.isSending = true;
       if ($state.params.processId) {
@@ -64,6 +65,7 @@ export class FormSubmitterService {
 
   public submitStartProcessForm(json) {
     // smoothScroll(document.getElementById("main"));
+    SmoothScroll.scrollTo(".main");
     this._gtm.sendData({
       'event': 'startSubmitForm',
       'screen': 'Camunda',
@@ -87,11 +89,7 @@ export class FormSubmitterService {
           'formKey': res,
           'taskId': res
         });
-        // $state.go(res.data.formKey, {
-        //     processId: processId,
-        //     taskId: res.data.taskId
-        //   }
-        // )
+        this._camundaRouting.changeRoute(res);
       }
       // $rootScope.updateNextProcessTask();
     });

@@ -7,21 +7,19 @@ import { EntranceOffersComponent } from './entrance-offers/entrance-offers.compo
 
 import {OpinieModule} from '../opinie/opinie.module';
 
-
-
-const entranceComponents = [
-  EntranceComponent,
-  EntranceOffersComponent,
-  EntranceAdvantagesComponent
-];
-
 @NgModule({
+  declarations: [
+    EntranceComponent,
+    EntranceOffersComponent,
+    EntranceAdvantagesComponent
+  ],
   imports: [
     CommonModule,
     OpinieModule
   ],
-  exports: [entranceComponents],
-  declarations: [entranceComponents],
+  exports: [
+    OpinieModule,
+  ],
   providers: []
 })
 
